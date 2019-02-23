@@ -4,12 +4,13 @@ def nato(message)
   array = message.chars
   answer = []
   array.each do |character|
+    x = nil
     if !!(character.match(/\d/))
-      answer << ALPHABET[26..35].find {|word| ALPHABET.index(word) - 26 == character.to_i}
+      x = ALPHABET[26..35].find {|word| ALPHABET.index(word) - 26 == character.to_i}
     else
-      answer << ALPHABET[0..25].find {|word| word[0] == character.upcase}
+      x = ALPHABET[0..25].find {|word| word[0] == character.upcase}
     end
+    answer << x if x != nil
   end
-  answer.reject!(&:empty?)
-  answer.join(" ")
+  answer.reject(&:empty?).join(" ")
 end
